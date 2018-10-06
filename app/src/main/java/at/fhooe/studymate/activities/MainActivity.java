@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -25,18 +24,21 @@ import at.fhooe.studymate.model.Manager;
  * Activity showing the introductory screens and the closing screen
  */
 public class MainActivity extends AppCompatActivity implements EventListener, SetupFragment.Callback, EnterFragment.Callback {
+
     private String qrCodeData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getLifecycle().addObserver(new MainLifeCycle());
+
         Manager.INSTANCE.init(getApplicationContext());
-        ExperimentInfo oldExp = Manager.INSTANCE.getDataProvider(getApplicationContext()).getExperiment();
-        Log.d("uptown", "Old: " + oldExp);
         qrCodeData = QrCodeActivity.DUMMY_DATA;
         getFragmentManager().beginTransaction().replace(R.id.container, new EnterFragment()).commit();
-        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
