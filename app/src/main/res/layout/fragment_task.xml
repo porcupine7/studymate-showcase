@@ -1,63 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/txt_task_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/placeholder"
-        android:textAppearance="?android:textAppearanceLarge" />
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="model"
+            type="at.fhooe.studymate.entities.TaskModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/txt_task_description"
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="fill_parent"
-        android:layout_height="492dp"
-        android:layout_above="@id/btn_start"
-        android:layout_marginTop="16.0dip"
-        android:scrollbars="vertical"
-        android:text="@string/placeholder"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        app:layout_constraintTop_toBottomOf="@id/txt_task_title" />
+        android:layout_height="fill_parent">
 
-    <Button
-        android:id="@+id/btn_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/desc_start_task"
-        android:text="@string/start_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
 
-    <TextView
-        android:id="@+id/txt_running"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16.0dip"
-        android:layout_marginStart="32.0dip"
-        android:text="@string/running_btn"
-        android:textAppearance="?android:textAppearanceMedium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        <TextView
+            android:id="@+id/txt_task_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{model.title}"
+            android:textAppearance="?android:textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/btn_concede"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@id/txt_running"
-        android:text="@string/concede_btn"
-        app:layout_constraintBottom_toTopOf="@id/txt_running" />
+        <TextView
+            android:id="@+id/txt_task_description"
+            android:layout_width="fill_parent"
+            android:layout_height="492dp"
+            android:layout_above="@id/btn_start"
+            android:layout_marginTop="16.0dip"
+            android:scrollbars="vertical"
+            android:text="@{model.description}"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            app:layout_constraintTop_toBottomOf="@id/txt_task_title" />
 
-    <TextView
-        android:id="@+id/txt_use_app"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10.0dip"
-        android:text="@string/placeholder"
-        android:textAppearance="?android:textAppearanceMedium"
-        app:layout_constraintBottom_toTopOf="@id/btn_concede"
-        app:layout_constraintLeft_toLeftOf="@id/btn_concede" />
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/desc_start_task"
+            android:text="@{model.running? @string/go_back_btn : @string/start_btn}"
+            android:onClick="@{() -> model.onStart()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_running"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16.0dip"
+            android:layout_marginStart="32.0dip"
+            android:text="@string/running_btn"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:visibility="@{model.running ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Button
+            android:id="@+id/btn_concede"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/txt_running"
+            android:text="@string/concede_btn"
+            android:onClick="@{() -> model.onConcede()}"
+            android:visibility="@{model.running ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@id/txt_running" />
+
+        <TextView
+            android:id="@+id/txt_use_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10.0dip"
+            android:text="@{model.instruction}"
+            android:textAppearance="?android:textAppearanceMedium"
+            app:layout_constraintBottom_toTopOf="@id/btn_concede"
+            app:layout_constraintLeft_toLeftOf="@id/btn_concede" />
+    </android.support.constraint.ConstraintLayout>
+</layout>
