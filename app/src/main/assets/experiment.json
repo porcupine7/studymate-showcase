@@ -1,0 +1,174 @@
+{
+  "id": "funnyrss",
+  "general": {
+    "name": "Funny RSS",
+    "consentMsg": "Do you want to participate in our experiment?",
+    "welcomeMsg": "Welcome to our Study!",
+    "closingMsg": "Thank you. You are the man!",
+    "preExpQuestionnaire": "Q01",
+    "postExpQuestionnaire": "Q03",
+    "repetitions": "false"
+  },
+  "tasks": [
+    {
+      "id": "T01",
+      "name": "Play a Game",
+      "description": "Play a Single-Player Game",
+      "followUpQuestionnaire": "Q02"
+    },
+    {
+      "id": "T02",
+      "name": "Change a Setting",
+      "description": "Change difficulty to four stars.",
+      "followUpQuestionnaire": "None"
+    }
+  ],
+  "questionnaires": [
+    {
+      "name": "Demographic Questionnaire",
+      "id": "Q01",
+      "questions": [
+        {
+          "id": "q01",
+          "question": "Age",
+          "type": "radio",
+          "answers": [
+            "     <25",
+            "     25-49 ",
+            "     50+ "
+          ]
+        },
+        {
+          "id": "q02",
+          "question": "Gender",
+          "type": "radio",
+          "answers": [
+            "     Male",
+            "     Female "
+          ]
+        },
+        {
+          "id": "q03",
+          "question": "Describe your mobile phone experience",
+          "type": "text"
+        },
+        {
+          "id": "q04",
+          "question": "Dexterity",
+          "type": "checkbox",
+          "answers": [
+            "   Left",
+            "    Right "
+          ]
+        },
+        {
+          "id": "q05",
+          "question": "I am good at using mobile phones.",
+          "type": "likert",
+          "likertSteps": "7",
+          "answers": [
+            "Disagree",
+            "Agree"
+          ]
+        },
+        {
+          "id": "q06",
+          "question": "??",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "Q02",
+      "name": "Post Task",
+      "questions": [
+        {
+          "id": "q01",
+          "question": "How did you feel, when doing the task?",
+          "type": "text"
+        },
+        {
+          "id": "q02",
+          "question": "Goood",
+          "type": "checkbox",
+          "answers": [
+            "der",
+            " nana "
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Q03",
+      "name": "System Evaluation",
+      "questions": [
+        {
+          "id": "q01",
+          "question": "I would recommend this app.",
+          "type": "likert",
+          "likertSteps": "7",
+          "answers": [
+            "Disagree",
+            "Agree"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Q04",
+      "name": "??",
+      "questions": []
+    }
+  ],
+  "apps": [
+    {
+      "id": "A01",
+      "name": "Boolitaire",
+      "package": "at.impossibru.boolitaire"
+    }
+  ],
+  "instructions": [
+    {
+      "id": "I01",
+      "name": "Walking",
+      "instruction": "You will use app ${app} when walking"
+    },
+    {
+      "id": "I02",
+      "name": "Sitting",
+      "instruction": "You will use app ${app} when sitting"
+    }
+  ],
+  "blocks": [
+    [
+      {
+        "task": "T01",
+        "app": "A01",
+        "instruction": "I01"
+      },
+      {
+        "task": "T02",
+        "app": "A01",
+        "instruction": "I01"
+      }
+    ],
+    [
+      {
+        "task": "T02",
+        "app": "A01",
+        "instruction": "I01"
+      },
+      {
+        "task": "T01",
+        "app": "A01",
+        "instruction": "I01"
+      }
+    ]
+  ],
+  "video": {
+    "enabled": "false",
+    "mic": "false",
+    "quality": "low"
+  },
+  "custom_ivs": []
+}

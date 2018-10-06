@@ -1,0 +1,23 @@
+{
+  "name": "Hotspot Experiment",
+  "id": "hotspot",
+  "consentMsg": "Do you want to participate?",
+  "independentVariable": {
+    "type": "app",
+    "subjectsDesign": "within",
+    "levels": [
+      "com.android.settings",
+      "at.fhooe.mc.sms"
+    ]
+  },
+  "tasks": [
+    {
+      "name": "Create a hotspot",
+      "description": "Create a hotspot..",
+      "id": "T1",
+      "dependentVariables": [
+        "time"
+      ]
+    }
+  ]
+}
