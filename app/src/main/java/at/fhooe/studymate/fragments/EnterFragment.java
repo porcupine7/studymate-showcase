@@ -23,56 +23,59 @@ import butterknife.OnClick;
  */
 public class EnterFragment extends Fragment {
 
-  public static final String EXP_URL = "assets/experiment.json?par=%1$s&bl=0";
+    public static final String EXP_URL = "assets/experiment.json?par=%1$s&bl=0";
 
-  @BindView(R.id.edit_par)
-  EditText editPar;
+    public static final String DEFAULT_PARTICIPANT_ID = "P01";
+    public static final String FIRST_REP = "R01";
 
-  @BindView(R.id.txt_cur_rep)
-  TextView txtCurRep;
+    @BindView(R.id.edit_par)
+    EditText editPar;
 
-  private Callback callback;
+    @BindView(R.id.txt_cur_rep)
+    TextView txtCurRep;
 
-  @SuppressWarnings("deprecation")
-  @Override
-  public void onAttach(Activity activity) {
-    //New onAttach is not called on older devices. Oh Android Boy!
-    super.onAttach(activity);
-    if (activity instanceof Callback) {
-      callback = (Callback) activity;
-    } else {
-      throw new IllegalStateException("Activity not allowed to use SetupFragment: Implement Callback");
+    private Callback callback;
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onAttach(Activity activity) {
+        //New onAttach is not called on older devices. Oh Android Boy!
+        super.onAttach(activity);
+        if (activity instanceof Callback) {
+            callback = (Callback) activity;
+        } else {
+            throw new IllegalStateException("Activity not allowed to use SetupFragment: Implement Callback");
+        }
     }
-  }
 
-  @Nullable
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View rootView = inflater.inflate(R.layout.fragment_enter, container, false);
-    ButterKnife.bind(this, rootView);
-    IDataManager dataProvider = Manager.INSTANCE.getDataProvider(getActivity());
-    ParticipantInfo oldPar = dataProvider.getParticipant();
-    if (oldPar != null) {
-      editPar.setText(oldPar.getParticipantId());
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_enter, container, false);
+        ButterKnife.bind(this, rootView);
+        IDataManager dataProvider = Manager.INSTANCE.getDataProvider(getActivity());
+        ParticipantInfo oldPar = dataProvider.getParticipant();
+        editPar.setText(DEFAULT_PARTICIPANT_ID);
+        if (oldPar != null) {
+            editPar.setText(oldPar.getParticipantId());
+        }
+        if (dataProvider.getFieldRep() == null || dataProvider.getFieldRep().isEmpty()) {
+            dataProvider.cacheFieldRep(FIRST_REP);
+        }
+        txtCurRep.setText(dataProvider.getFieldRep());
+        return rootView;
     }
-    if (dataProvider.getFieldRep() == null || dataProvider.getFieldRep().isEmpty()) {
-      String startRep = "R01";
-      dataProvider.cacheFieldRep(startRep);
-    }
-    txtCurRep.setText(dataProvider.getFieldRep());
-    return rootView;
-  }
 
-  @OnClick(R.id.btn_ok)
-  public void okClicked(View view) {
-    String pid = editPar.getText().toString();
-    if (!pid.isEmpty()) {
-      String url = String.format(EXP_URL, pid);
-      callback.urlSet(url);
+    @OnClick(R.id.btn_ok)
+    public void okClicked(View view) {
+        String pid = editPar.getText().toString();
+        if (!pid.isEmpty()) {
+            String url = String.format(EXP_URL, pid);
+            callback.urlSet(url);
+        }
     }
-  }
 
-  public interface Callback {
-    void urlSet(String url);
-  }
+    public interface Callback {
+        void urlSet(String url);
+    }
 }

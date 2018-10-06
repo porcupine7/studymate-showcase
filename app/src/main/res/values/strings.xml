@@ -34,6 +34,10 @@
     <string name="desc_finished_task">Finished Task</string>
     <string name="desc_help_task">Help Task</string>
     <string name="desc_start_task">Start Task</string>
+
+    <string name="enter_participant_id">Participant id:</string>
+    <string name="enter_current_rep">Current repetition:</string>
+
     <string name="finish_notification">Finished Task</string>
     <string name="go_back_btn">Go Back</string>
     <string name="help_notification">Help</string>
