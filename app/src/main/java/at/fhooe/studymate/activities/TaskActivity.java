@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import at.fhooe.studymate.R;
 import at.fhooe.studymate.entities.blocking.ConditionBundle;
@@ -120,6 +121,7 @@ public class TaskActivity extends AppCompatActivity implements TaskFragment.Call
         }
     }
 
+    @Subscribe
     public void onEvent(NavEvent event) {
         switch (event) {
             case TASK_FINISHED:

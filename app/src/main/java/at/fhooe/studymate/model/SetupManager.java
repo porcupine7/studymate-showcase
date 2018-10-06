@@ -37,7 +37,6 @@ public class SetupManager implements ISetupManager {
         expectedEvents.add(SetupEvent.EXPERIMENT_DONE);
         expectedEvents.add(SetupEvent.PARTICIPANT_DONE);
         expectedEvents.add(SetupEvent.APP_DONE);
-        expectedEvents.add(SetupEvent.ACCESSIBILITY_DONE);
         actualEvents = new ArrayList<>();
     }
 
