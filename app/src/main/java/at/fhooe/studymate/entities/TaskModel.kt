@@ -1,6 +1,7 @@
 package at.fhooe.studymate.entities
 
 import android.arch.lifecycle.ViewModel
+import android.databinding.ObservableField
 import android.util.Log
 import at.fhooe.studymate.fragments.TaskFragment
 
@@ -13,22 +14,18 @@ class TaskModel : ViewModel() {
 
     var instruction = "Do this"
 
-    var running = false
+    var running: ObservableField<Boolean> = ObservableField()
 
     fun onStart() {
         Log.d("uptown", "Start Clicked")
-        if (!running) {
-            callback.startTask()
-            running = true
-        }
+        callback.startTask()
+        running.set(true)
     }
 
     fun onConcede() {
         Log.d("uptown", "Concede Clicked")
-        if (running) {
-            callback.concedeTask()
-            running = false
-        }
+        callback.concedeTask()
+        running.set(false)
     }
 
 }

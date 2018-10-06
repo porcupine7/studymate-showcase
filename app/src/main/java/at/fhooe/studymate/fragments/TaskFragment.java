@@ -73,6 +73,7 @@ public class TaskFragment extends Fragment {
         model.setTitle(task.getName());
         model.setDescription(task.getDescription());
         model.setInstruction(curConditionBundle.getFormattedInstruction());
+        model.getRunning().set(false);
         binding.setModel(model);
     }
 
