@@ -4,7 +4,7 @@
     "name": "Funny RSS",
     "consentMsg": "Do you want to participate in our experiment?",
     "welcomeMsg": "Welcome to our Study!",
-    "closingMsg": "Thank you. You are the man!",
+    "closingMsg": "Thanks for the participation!",
     "preExpQuestionnaire": "Q01",
     "postExpQuestionnaire": "Q03",
     "repetitions": "false"
@@ -89,11 +89,13 @@
         },
         {
           "id": "q02",
-          "question": "Goood",
+          "question": "What describes your experience well?",
           "type": "checkbox",
           "answers": [
-            "der",
-            " nana "
+            "difficult",
+            "complicated",
+            "annoying",
+            "exhausting"
           ]
         }
       ]
