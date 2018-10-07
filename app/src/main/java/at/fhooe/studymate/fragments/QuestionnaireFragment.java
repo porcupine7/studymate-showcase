@@ -66,7 +66,7 @@ public class QuestionnaireFragment extends Fragment {
    */
   private void addQuestionViews(List<Question> questions) {
     for (Question question : questions) {
-      QuestionView questionView = QuestionViewFactory.createQuestionView(getActivity(), question);
+      QuestionView questionView = QuestionViewFactory.INSTANCE.createQuestionView(getActivity(), question);
       if (questionView != null) {
         questionsContainer.addView((View) questionView);
         questionViewList.add(questionView);
