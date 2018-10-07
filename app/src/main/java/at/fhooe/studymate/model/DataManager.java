@@ -47,7 +47,7 @@ public class DataManager implements IDataManager {
 
   @Override
   public void cacheBaseUrl(String baseUrl) {
-    pref.edit().putString(KEY_PARTICIPANT, baseUrl).apply();
+    pref.edit().putString(KEY_BASE_URL, baseUrl).apply();
     this.baseUrl = baseUrl;
   }
 
